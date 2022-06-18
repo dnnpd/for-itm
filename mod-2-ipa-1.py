@@ -33,7 +33,12 @@ def savings(gross_pay, tax_rate, expenses):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    return (int(tax_rate*gross_pay)-expenses)
+
+    apply_tax = int(tax_rate*gross_pay)
+    after_tax = gross_pay - apply_tax    
+    remaining = after_tax-expenses
+    
+    return (remaining)
 
 def material_waste(total_material, material_units, num_jobs, job_consumption):
     '''Material Waste.
@@ -135,13 +140,12 @@ def body_mass_index(weight, height):
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    kg_weight = weight/2.20462
-    
-    m_ft = height[0]*0.3048
-    
-    m_inch = height[1]*0.0254
-    
-    m_height = m_ft + m_inch
+    #weight: pounds to kilograms
+    lb_kg = weight*0.453592       
+        
+    #height: inches to meters
+    ft_inch = height[0]*12   #feet to inches
+    inch_height = ft_inch + height[1]  #total inches
+    m_height = inch_height * 0.0254  #inches to meters
    
-    return(kg_weight/(m_height**2))
-    
+    return(lb_kg/(m_height**2))
