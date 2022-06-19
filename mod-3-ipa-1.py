@@ -46,9 +46,6 @@ def shift_letter(letter, shift):
 
 
     if letter == " ":
-        return(" ")
-    
-    elif shift == _:
         return(letter)
 
     else:
@@ -159,9 +156,6 @@ def shift_by_letter(letter, letter_shift):
     alphabet_list = list(alphabet_string)
 
     if letter == " ":
-        return(" ")
-
-    elif letter_shift == _:
         return(letter)
 
     else:
@@ -382,7 +376,7 @@ def scytale_decipher(message, shift):
     scytale_decipher = list()
 
     while i < len(message):
-        multiple = int(len(message)/shift)  #5
+        multiple = int(len(message)/shift)  
 
         de_cipher = (i // multiple) + (len(message) // multiple) * (i % multiple)
 
