@@ -41,7 +41,20 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    #Find following status from social_graphs
+    to_member_following = set(social_graph[to_member]["following"])
+    from_member_following = set(social_graph[from_member]["following"])
+  
+    #Match 
+    if (from_member in to_member_following) and (to_member in from_member_following):
+        return "friends"
+    elif from_member in to_member_following:
+        return "followed by"
+    elif to_member in from_member_following:
+        return "following"
+    else:
+        return "no relationship" 
 
 
 def tic_tac_toe(board):
@@ -70,7 +83,35 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    def check_row_col(board):
+        # rows and columns
+        for row in board:
+            if len(set(row)) == 1:
+                return row[0]
+        return 0
+
+    def check_diagonal(board):
+        # down-up diagonal 1,1 2,2 3,3
+        if len(set([board[i][i] for i in range(len(board))])) == 1:
+            return board[0][0]
+        
+        # up-down diagonal 1,3 2,2 3,1
+        if len(set([board[i][len(board)-i-1] for i in range(len(board))])) == 1:
+            return board[0][len(board)-1]
+        return 0
+
+    def status(board):
+        result = check_row_col(board)
+        if result:
+            return result
+        return check_diagonal(board)
+
+    if status(board) == 0:
+        return("NO WINNER")
+    else:
+        return(status(board))
+
 
 def eta(first_stop, second_stop, route_map):
     '''ETA. 
@@ -103,4 +144,25 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    
+    a = first_stop
+    from_route_map = [v for k, v in route_map.items() if k[0] == a]
+
+    from_index = from_route_map[0]
+    from_stop_time = from_index["travel_time_mins"]
+
+    # to stop
+    b = second_stop
+    to_route_map = [v for k, v in route_map.items() if k[1] == b]
+    
+    to_index = to_route_map[0]
+    to_stop_time = to_index["travel_time_mins"]
+
+    # sum of travel time
+    if to_route_map == from_route_map:
+        return(from_stop_time)
+    else:
+        total = from_stop_time + to_stop_time
+        return (total)
+    
